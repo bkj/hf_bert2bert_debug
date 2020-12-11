@@ -28,6 +28,8 @@ QUICKRUN = True
 
 dataset = datasets.load_dataset("wmt14", "de-en", split="test")
 dataset = list(dataset)
+dataset = [xx['translation'] for xx in dataset]
+dataset = [dataset[i] for i in np.random.RandomState(123).permutation(len(dataset))]
 
 # --
 # Load model
@@ -41,9 +43,6 @@ sess = tf.InteractiveSession()
 sess.run(tf.tables_initializer())
 sess.run(tf.global_variables_initializer())
 
-# --
-# Define graph
-
 src       = tf.placeholder(tf.string, shape=[None])
 translate = model(src)
 
@@ -52,8 +51,8 @@ translate = model(src)
 
 for chunk in tqdm(np.array_split(dataset, len(dataset) // 32)):
     
-    inputs  = np.array([xx['translation']['de'] for xx in chunk])
-    targets = np.array([xx['translation']['en'] for xx in chunk])
+    inputs  = np.array([xx['de'] for xx in chunk])
+    targets = np.array([xx['en'] for xx in chunk])
     
     output_str = sess.run(translate, feed_dict = {
         src : inputs
