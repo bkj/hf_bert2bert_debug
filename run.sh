@@ -2,6 +2,9 @@
 
 # run.sh
 
+# !! By default, runs on a single batch
+# Set `QUICKRUN = False` in each of the files to run on the whole dataset
+
 # --
 # Huggingface
 

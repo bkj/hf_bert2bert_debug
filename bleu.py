@@ -14,6 +14,7 @@ import sacrebleu
 f = sys.argv[1].strip()
 x = [json.loads(xx) for xx in open(f).readlines()]
 
+print(x)
 print(f'n_records={len(x)}', file=sys.stderr)
 
 output = [xx['output'] for xx in x]

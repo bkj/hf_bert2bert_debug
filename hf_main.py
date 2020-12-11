@@ -45,7 +45,7 @@ def collate_fn(batch):
 
 dataloader = torch.utils.data.DataLoader(
     dataset    = dataset,
-    batch_size = 8,
+    batch_size = 32,
     collate_fn = collate_fn,
 )
 
