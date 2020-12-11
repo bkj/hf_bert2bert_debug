@@ -22,3 +22,9 @@ python tf_main.py > tf_out.jl
 
 # Score
 python bleu.py tf_out.jl
+
+# --
+# Inspect results
+
+cat hf_out.jl | tail -n 1 | jq .
+cat tf_out.jl | tail -n 1 | jq .
